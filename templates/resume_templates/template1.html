@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume - Template 1</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    h1 { border-bottom: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>{{ full_name }}</h1>
+  <p><strong>Phone:</strong> {{ phone_number }}</p>
+  <p><strong>Email:</strong> {{ email }}</p>
+  <p><strong>Location:</strong> {{ location }}</p>
+
+  <h2>Skills</h2>
+  <p>{{ skills }}</p>
+
+  <h2>Education</h2>
+  <p>{{ education }}</p>
+
+  <h2>Experience</h2>
+  <p>{{ experience }}</p>
+
+  <h2>Projects</h2>
+  <p>{{ projects }}</p>
+
+  <h2>Achievements</h2>
+  <p>{{ achievements }}</p>
+  {% comment %} <p><a href="{% url 'download_resume' %}">⬇ Download PDF</a></p> {% endcomment %}
+
+</body>
+</html>
