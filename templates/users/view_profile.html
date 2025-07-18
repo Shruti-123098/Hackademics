@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Profile</h2>
+<p><strong>Full Name:</strong> {{ profile.full_name }}</p>
+<p><strong>Phone:</strong> {{ profile.phone_number }}</p>
+<p><strong>Location:</strong> {{ profile.location }}</p>
+<p><strong>Skills:</strong> {{ profile.skills }}</p>
+<p><strong>Education:</strong> {{ profile.education }}</p>
+<p><strong>Experience:</strong> {{ profile.experience }}</p>
+<p><strong>Projects:</strong> {{ profile.projects }}</p>
+<p><strong>Achievements:</strong> {{ profile.achievements }}</p>
+<p><strong>Resume Template:</strong> Template {{ profile.resume_template_choice }}</p>
+
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
+{% endblock %}
