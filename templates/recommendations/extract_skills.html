@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Extract Skills</h2>
+  <p>This will analyze your profile and extract relevant skills using AI.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Extract Skills</button>
+  </form>
+{% endblock %}

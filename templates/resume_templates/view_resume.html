@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {% for resume in allresume %}
+    <div class="flex flex-col items-center p-6 border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition bg-white">
+      
+      <!-- Icon -->
+      <div class="text-sm text-gray-500 mb-2">Resume {{ forloop.counter }}</div>
+      
+      <!-- Resume Name -->
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-3">
+        <a href="{% url 'view-resume' resume.id %}" class="px-4 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition">
+          View
+        </a>
+        
+          <a href = {% url 'delete_resume' resume.id %} class="px-4 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-sm transition">
+            Delete
+          </a>
+        
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+

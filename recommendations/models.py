@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.utils import timezone
 
 class JobRecommendation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -12,7 +13,33 @@ class JobRecommendation(models.Model):
 
 class LearningPath(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    target_job = models.CharField(max_length=100)
-    recommended_courses = models.TextField()
-    estimated_duration_weeks = models.IntegerField()
+    goal_id = models.IntegerField()  # Using the pk parameter from your view
+    content = models.TextField()
+    steps = models.JSONField()
+    is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('user', 'goal_id')  # One path per user per goal
+
+    def __str__(self):
+        return f"{self.user.username}'s Learning Path #{self.goal_id}"
+
+class roadmap(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.user.username
+    
+class Roadmap1(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='roadmaps')
+    title = models.CharField(max_length=255, default='Untitled Roadmap')
+    raw_response = models.TextField(help_text="Full Gemini-generated roadmap text")
+    steps = models.JSONField(help_text="List of steps with completion status")
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.title}"

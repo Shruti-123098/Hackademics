@@ -42,7 +42,7 @@ def dashboard_view(request):
 @login_required
 def create_or_edit_profile(request):
     try:
-        profile = request.user.userprofile
+        profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
         profile = None
 

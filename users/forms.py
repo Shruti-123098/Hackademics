@@ -25,6 +25,19 @@ class UserProfileForm(forms.ModelForm):
             'projects': forms.Textarea(attrs={'rows': 2}),
             'achievements': forms.Textarea(attrs={'rows': 2}),
         }
+        def __init__(self, *args, **kwargs):
+            super(UserProfileForm, self).__init__(*args, **kwargs)
+            for field_name, field in self.fields.items():
+                # Apply consistent Tailwind classes to all input/textarea/select fields
+                existing_classes = field.widget.attrs.get('class', '')
+                field.widget.attrs['class'] = (
+                    existing_classes +
+                    ' w-full px-4 py-2 border border-gray-300 rounded-md '
+                    'focus:outline-none focus:ring-2 focus:ring-blue-500'
+                )
+                field.widget.attrs.update({
+                    'class': 'w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                })
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:

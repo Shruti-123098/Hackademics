@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <label for="target_job" class="block text-sm font-medium text-gray-700 mb-2">Enter Target Job</label>
+    <input
+      type="text"
+      id="target_job"
+      name="target_job"
+      class="w-full border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black mb-4"
+      placeholder="e.g., Frontend Engineer"
+    />
+
+    <button
+      onclick="redirectToRoadmap()"
+      class="w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition"
+    >
+      Generate Roadmap
+    </button>
+  </div>
+</div>
+
+<script>
+  function redirectToRoadmap() {
+    const input = document.getElementById("target_job").value.trim();
+    if (input) {
+      const encoded = encodeURIComponent(input);
+      const urlTemplate = `/recommendations/roadmap/${encoded}/`;
+      window.location.href = urlTemplate;
+    } else {
+      alert("Please enter a target job.");
+    }
+  }
+</script>
+
+{% endblock %}

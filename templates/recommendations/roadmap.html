@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="p-6 bg-white shadow-md rounded-md text-gray-800 text-sm whitespace-pre-line leading-relaxed">
+    {{ response }}
+  </div>
+
+
+<div class="max-w-2xl mx-auto py-8">
+  <h2 class="text-2xl font-bold mb-4">Your Roadmap</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="space-y-4">
+      {% for step in steps %}
+        <div class="flex items-center space-x-3">
+          <input type="checkbox" name="step_{{ forloop.counter }}" id="step_{{ forloop.counter }}"
+                 class="h-5 w-5 text-indigo-600 border-gray-300 rounded"
+                 {% if step.completed %}checked{% endif %}>
+          <label for="step_{{ forloop.counter }}" class="text-gray-800">
+            {{ step.step }}
+          </label>
+        </div>
+      {% endfor %}
+    </div>
+    <button type="submit"
+            class="mt-6 bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+      Save Progress
+    </button>
+  </form>
+</div>
+{% endblock %}
+

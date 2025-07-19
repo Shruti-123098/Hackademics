@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Live Job Matches</h2>
+
+  {% if error %}
+    <p>{{ error }}</p>
+  {% elif matched_jobs %}
+    <ul>
+      {% for job in matched_jobs %}
+        <li>
+          <h4>{{ job.title }}</h4>
+          <p>{{ job.description|truncatechars:400 }}</p>
+          <p><strong>Reason:</strong> {{ job.reason }}</p>
+          <a href="{{ job.url }}" target="_blank">Apply</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No matches found.</p>
+  {% endif %}
+{% endblock %}

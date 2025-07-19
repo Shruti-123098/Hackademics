@@ -1,34 +1,61 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Resume - Template 3</title>
-  <style>
-    body { font-family: Georgia, serif; margin: 30px; color: #333; }
-    .header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; }
-    h2 { margin-top: 20px; border-bottom: 1px solid #aaa; }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <h1>{{ full_name }}</h1>
-    <p>{{ phone_number }} | {{ email }} | {{ location }}</p>
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white shadow-md border border-gray-200 p-10 my-10">
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold uppercase tracking-wide text-black">
+      {{ full_name }}
+    </h1>
+    <p class="text-sm text-gray-700">{{ location }} | {{ phone_number }} | {{email}} </p>
+  </header>
+
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold border-b border-gray-400 pb-1 mb-3 uppercase">Skills</h2>
+    <ul class="list-disc list-inside text-gray-800">
+      {{skills}}
+    </ul>
+  </section>
+
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold border-b border-gray-400 pb-1 mb-3 uppercase">Education</h2>
+    <p class="text-gray-800 whitespace-pre-line">
+      {{ education }}
+    </p>
+  </section>
+
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold border-b border-gray-400 pb-1 mb-3 uppercase">Experience</h2>
+    <p class="text-gray-800 whitespace-pre-line">
+      {{ experience }}
+    </p>
+  </section>
+
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold border-b border-gray-400 pb-1 mb-3 uppercase">Projects</h2>
+    <p class="text-gray-800 whitespace-pre-line">
+      {{projects|default:"Not provided" }}
+    </p>
+  </section>
+
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold border-b border-gray-400 pb-1 mb-3 uppercase">Achievements</h2>
+    <p class="text-gray-800 whitespace-pre-line">
+      {{ achievements|default:"Not provided" }}
+    </p>
+  </section>
+
+  <div class="mt-10">
+    <a href="{% url 'edit_profile' %}" class="inline-block border border-black px-5 py-2 text-sm text-black hover:bg-gray-100 transition rounded">
+      Edit Profile
+    </a>
   </div>
+</div>
 
-  <h2>Skills</h2>
-  <p>{{ skills }}</p>
 
-  <h2>Education</h2>
-  <p>{{ education }}</p>
 
-  <h2>Experience</h2>
-  <p>{{ experience }}</p>
 
-  <h2>Projects</h2>
-  <p>{{ projects }}</p>
-
-  <h2>Achievements</h2>
-  <p>{{ achievements }}</p>
-  {% comment %} <p><a href="{% url 'download_resume' %}">⬇ Download PDF</a></p> {% endcomment %}
-
-</body>
-</html>
+<p><a href="{% url 'download_resume' %}">Download as Docx</a></p>
+<p><a href="{% url 'download_resume' %}">Download as PDF</a></p>
+{% endblock %}

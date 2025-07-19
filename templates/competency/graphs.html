@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="p-6 space-y-6">
+  <h1 class="text-2xl font-bold text-indigo-700 mb-6">Your Test Performance History</h1>
+  
+  <!-- Performance Summary Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+    <div class="bg-white p-4 rounded-lg shadow border border-green-200">
+      <h3 class="text-gray-500 font-medium">Total Tests</h3>
+      <p class="text-3xl font-bold text-indigo-600">{{ sessions.count }}</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow border border-blue-200">
+      <h3 class="text-gray-500 font-medium">Correct Answers</h3>
+      <p class="text-3xl font-bold text-indigo-600">{{ total_correct }}</p>
+    </div>
+    <div class="bg-white p-4 rounded-lg shadow border border-purple-200">
+      <h3 class="text-gray-500 font-medium">Accuracy</h3>
+      <p class="text-3xl font-bold text-indigo-600">{{ overall_accuracy }}%</p>
+    </div>
+  </div>
+
+  <!-- Performance Over Time Chart -->
+  <div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800">Your Progress Over Time</h2>
+    <div class="h-80">
+      <canvas id="progressChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Progress Chart
+  const ctx = document.getElementById('progressChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [
+        {% for session in sessions %}
+          "{{ session.created_at|date:'M d' }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      ],
+      datasets: [{
+        label: 'Correct Answers',
+        data: [
+          {% for session in sessions %}
+            {{ session.correct_answers }}{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ],
+        borderColor: '#6366F1',
+        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+        tension: 0.3,
+        fill: true
+      }, {
+        label: 'Total Questions',
+        data: [
+          {% for session in sessions %}
+            {{ session.total_questions }}{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ],
+        borderColor: '#EC4899',
+        borderDash: [5, 5],
+        backgroundColor: 'transparent'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of Questions'
+          }
+        }
+      }
+    }
+  });
+</script>
+
+{% endblock %}

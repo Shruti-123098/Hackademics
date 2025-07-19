@@ -1,7 +1,93 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Welcome, {{ user.username }}!</h2>
-<p>This is your dashboard.</p>
-<a href="{% url 'generate_resume' %}">Generate Resume</a>
-<a href="{% url 'logout' %}">Logout</a>
+<div class="max-w-4xl mx-auto mt-16 bg-white p-8 rounded-xl shadow">
+  <h2 class="text-3xl font-bold text-blue-600 mb-10 text-center">
+    Welcome, {{ user.username }}!
+  </h2>
+
+  <div class="space-y-4">
+
+    <!-- Generate Resume -->
+    <a href="{% url 'generate_resume' %}" class="flex items-center bg-blue-600 text-white p-6 rounded-xl shadow-md hover:bg-blue-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 4h10M7 8h10M7 12h4m1 8h2a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2h2" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">Generate Resume</p>
+        <p class="text-sm">Build a professional resume from your profile data.</p>
+      </div>
+    </a>
+
+    <!-- Take Competency Test -->
+    <a href="{% url 'generate_test' %}" class="flex items-center bg-green-600 text-white p-6 rounded-xl shadow-md hover:bg-green-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6M9 8h.01M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">Take Competency Test</p>
+        <p class="text-sm">Evaluate your skills to identify strengths and gaps.</p>
+      </div>
+    </a>
+
+    <!-- View Resumes -->
+    <a href="{% url 'view' %}" class="flex items-center bg-purple-600 text-white p-6 rounded-xl shadow-md hover:bg-purple-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">View Your Resumes</p>
+        <p class="text-sm">Access and manage all your previously created resumes.</p>
+      </div>
+    </a>
+
+    <!-- Create Roadmap -->
+    <a href="{% url 'target_job' %}" class="flex items-center bg-orange-600 text-white p-6 rounded-xl shadow-md hover:bg-orange-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6h13v6M3 12h6v6H3z" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">Create Roadmap</p>
+        <p class="text-sm">Set a career goal and receive a personalized skill path.</p>
+      </div>
+    </a>
+
+    <!-- Job Recommendations -->
+    <a href="{% url 'job_recommendation' %}" class="flex items-center bg-yellow-600 text-white p-6 rounded-xl shadow-md hover:bg-yellow-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">Job Recommendations</p>
+        <p class="text-sm">Explore jobs that match your skills and interests.</p>
+      </div>
+    </a>
+
+    <!-- Test Summary -->
+    <a href="{% url 'history_test' %}" class="flex items-center bg-indigo-600 text-white p-6 rounded-xl shadow-md hover:bg-indigo-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11 17a4 4 0 114 4 4 4 0 01-4-4zm1-9h1a2 2 0 011 3.73v.27h-2v-.27A2 2 0 0112 8z" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">Test Summary</p>
+        <p class="text-sm">View your performance in past competency tests.</p>
+      </div>
+    </a>
+
+    <!-- Visualize -->
+    <a href="{% url 'history_graph' %}" class="flex items-center bg-teal-600 text-white p-6 rounded-xl shadow-md hover:bg-teal-700 transform hover:scale-[1.02] transition duration-200">
+      <svg class="w-10 h-10 mr-4 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+      <div>
+        <p class="text-lg font-semibold">Visualize</p>
+        <p class="text-sm">Graph your progress and learning trends over time.</p>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+
+
+
 {% endblock %}

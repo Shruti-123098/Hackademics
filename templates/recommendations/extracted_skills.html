@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Extracted Skills</h2>
+
+  {% if skills %}
+    <ul>
+      {% for skill in skills %}
+        <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No skills were extracted.</p>
+  {% endif %}
+{% endblock %}

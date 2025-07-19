@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Your Profile</h2>
-<p><strong>Full Name:</strong> {{ profile.full_name }}</p>
-<p><strong>Phone:</strong> {{ profile.phone_number }}</p>
-<p><strong>Location:</strong> {{ profile.location }}</p>
-<p><strong>Skills:</strong> {{ profile.skills }}</p>
-<p><strong>Education:</strong> {{ profile.education }}</p>
-<p><strong>Experience:</strong> {{ profile.experience }}</p>
-<p><strong>Projects:</strong> {{ profile.projects }}</p>
-<p><strong>Achievements:</strong> {{ profile.achievements }}</p>
-<p><strong>Resume Template:</strong> Template {{ profile.resume_template_choice }}</p>
+<div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-xl shadow">
+  <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">Your Profile</h2>
 
-<a href="{% url 'edit_profile' %}">Edit Profile</a>
+  <div class="space-y-4 text-gray-700">
+    <p><span class="font-semibold">Full Name:</span> {{ profile.full_name }}</p>
+    <p><span class="font-semibold">Phone:</span> {{ profile.phone_number }}</p>
+    <p><span class="font-semibold">Location:</span> {{ profile.location }}</p>
+    <p><span class="font-semibold">Skills:</span> {{ profile.skills }}</p>
+    <p><span class="font-semibold">Education:</span> {{ profile.education }}</p>
+    <p><span class="font-semibold">Experience:</span> {{ profile.experience }}</p>
+    <p><span class="font-semibold">Projects:</span> {{ profile.projects }}</p>
+    <p><span class="font-semibold">Achievements:</span> {{ profile.achievements }}</p>
+    <p><span class="font-semibold">Resume Template:</span> Template {{ profile.resume_template_choice }}</p>
+  </div>
+
+  <div class="mt-6 text-center">
+    <a href="{% url 'edit_profile' %}" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+      Edit Profile
+    </a>
+  </div>
+</div>
 {% endblock %}

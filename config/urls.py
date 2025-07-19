@@ -19,7 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),  # You’ll create these files later
+    path('', include('users.urls')),  # You’ll create these files later
     path('resume/', include('resume_builder.urls')),
     path('competency/', include('competency.urls')),
     path('recommendations/', include('recommendations.urls')),
